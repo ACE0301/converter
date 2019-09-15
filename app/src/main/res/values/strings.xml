@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Converter</string>
+    <string name="convert_to">Конвертировать в</string>
+    <string name="convert">КОНВЕРТИРОВАТЬ</string>
+    <string name="result">Результат</string>
+    <string name="convert_from">Конвертировать из</string>
+    <string name="input_value">Введите количество</string>
+    <string name="connection">нет данных, проверьте соединение с интернетом</string>
+    <string name="input_positive"/>
+    <string name="default_quantity">10</string>
+
+
+    <string-array name="currencies">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>RUB</item>
+    </string-array>
+</resources>

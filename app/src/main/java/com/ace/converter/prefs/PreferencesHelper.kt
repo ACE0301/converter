@@ -1,7 +1,5 @@
 package com.ace.converter.prefs
 
-import io.reactivex.Completable
-import io.reactivex.Single
 
 interface PreferencesHelper {
 

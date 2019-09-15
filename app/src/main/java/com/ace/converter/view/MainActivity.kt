@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ace.converter.R
 import com.ace.converter.base.context.ContextDelegateFactory
 import com.ace.converter.extentions.afterTextChanged
-import com.ace.converter.extentions.getInt
+import com.ace.converter.extentions.getIntOrZero
 import com.ace.converter.prefs.AppPreferencesHelper
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -29,9 +28,7 @@ class MainActivity : AppCompatActivity(), MainView {
         presenter = MainPresenter(this, repository)
 
         ArrayAdapter.createFromResource(
-            this,
-            R.array.currencies,
-            android.R.layout.simple_spinner_item
+            this, R.array.currencies, android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner_from.adapter = adapter
@@ -42,7 +39,7 @@ class MainActivity : AppCompatActivity(), MainView {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 currencyOne = parent.getItemAtPosition(pos).toString()
                 presenter.updateViewInfo("${currencyOne}_${currencyTwo}")
-                count = etQuantity.text.toString().getInt()
+                count = etQuantity.text.toString().getIntOrZero()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
@@ -52,7 +49,7 @@ class MainActivity : AppCompatActivity(), MainView {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 currencyTwo = parent.getItemAtPosition(pos).toString()
                 presenter.updateViewInfo("${currencyOne}_${currencyTwo}")
-                count = etQuantity.text.toString().getInt()
+                count = etQuantity.text.toString().getIntOrZero()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {}

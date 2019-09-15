@@ -15,6 +15,7 @@ class AppPreferencesHelper(
     }
 
     private var preferences = contextDelegate.getContext()?.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+
     var mSettings: SharedPreferences? = preferences
 
     override fun saveResult(pairOfCurrency: String, result: Float) {
@@ -22,7 +23,6 @@ class AppPreferencesHelper(
         editor?.putFloat(pairOfCurrency, result)
         editor?.apply()
     }
-
 
     override fun getResult(pairOfCurrency: String): Float? {
         return mSettings?.getFloat(pairOfCurrency, DEFAULT_RESULT)

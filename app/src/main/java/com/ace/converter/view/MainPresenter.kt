@@ -12,13 +12,11 @@ import io.reactivex.schedulers.Schedulers
 class MainPresenter(
     view: MainView,
     private val appPreferencesHelper: PreferencesHelper
-
 ) : BasePresenter<MainView>(view) {
 
     private var disposableGetCurrencyData: Disposable? = null
-    override fun onCreate() {
 
-    }
+    override fun onCreate() {}
 
     fun updateViewInfo(currencies: String) {
         disposableGetCurrencyData?.dispose()
@@ -36,4 +34,5 @@ class MainPresenter(
     override fun onDestroy() {
         disposableGetCurrencyData?.dispose()
     }
+
 }

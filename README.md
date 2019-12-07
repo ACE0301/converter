@@ -4,4 +4,4 @@
 
 # Screenshot
 
-![540x960](/screenshots/screenshot.png)
+![](/screenshots/screenshot.png)

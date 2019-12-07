@@ -4,4 +4,4 @@
 
 # Screenshot
 
-![1080x1920, 20%](/screenshots/screenshot.png)
+![540x960](/screenshots/screenshot.png)

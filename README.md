@@ -4,10 +4,4 @@
 
 # Screenshot
 
-![](/screenshots/screenshot.png){max-width: 50%}
-
-
-
-
-
-![](/screenshots/screenshot.png){width: 200px;}
+![1080x1920, 20%](/screenshots/screenshot.png)

@@ -6,6 +6,7 @@
 
     <application
             android:allowBackup="true"
+            android:name=".ConverterApp"
             android:icon="@mipmap/ic_launcher"
             android:label="Конвертер валют"
             android:roundIcon="@mipmap/ic_launcher_round"

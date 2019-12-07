@@ -4,19 +4,6 @@
     <string name="convert_from">Конвертировать из</string>
     <string name="input_value">Введите количество</string>
     <string name="connection">нет данных, проверьте соединение с интернетом</string>
-    <string name="input_positive"/>
-
-    <string-array name="currencies">
-        <item>USD</item>
-        <item>EUR</item>
-        <item>RUB</item>
-        <item>BTC</item>
-        <item>UAH</item>
-        <item>CHF</item>
-        <item>CNY</item>
-        <item>CZK</item>
-        <item>INR</item>
-        <item>XAG</item>
-
-    </string-array>
+    <string name="input_positive" />
 </resources>
+

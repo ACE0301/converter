@@ -10,21 +10,34 @@ class AppPreferencesHelper(
 ) : PreferencesHelper {
 
     companion object {
-        val APP_PREFERENCES = "mysettings"
+        const val APP_PREFERENCES = "currencies"
         private const val DEFAULT_RESULT = 0.0f
+        private val DEFAULT_PAIRS = setOf<String>()
+        private const val CURRENCIES = "CURRENCIES"
     }
 
-    private var preferences = contextDelegate.getContext()?.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+    private var preferences =
+        contextDelegate.getContext()?.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
 
-    var mSettings: SharedPreferences? = preferences
+    private val pref: SharedPreferences? = preferences
+
+    override fun savePairs(setPairs: Set<String>) {
+        val editor = pref?.edit()
+        editor?.putStringSet(CURRENCIES, setPairs)
+        editor?.apply()
+    }
+
+    override fun getPairs(): Set<String>? {
+        return pref?.getStringSet(CURRENCIES, DEFAULT_PAIRS)
+    }
 
     override fun saveResult(pairOfCurrency: String, result: Float) {
-        val editor = mSettings?.edit()
+        val editor = pref?.edit()
         editor?.putFloat(pairOfCurrency, result)
         editor?.apply()
     }
 
     override fun getResult(pairOfCurrency: String): Float? {
-        return mSettings?.getFloat(pairOfCurrency, DEFAULT_RESULT)
+        return pref?.getFloat(pairOfCurrency, DEFAULT_RESULT)
     }
 }

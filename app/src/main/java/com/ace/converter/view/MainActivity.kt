@@ -68,10 +68,10 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun loadCurrencies(currencies: List<String>) {
         ArrayAdapter(
             this, android.R.layout.simple_spinner_item, currencies
-        ).also {
-            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner_from.adapter = it
-            spinner_to.adapter = it
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner_from.adapter = adapter
+            spinner_to.adapter = adapter
         }
     }
 
@@ -89,5 +89,4 @@ class MainActivity : AppCompatActivity(), MainView {
         super.onDestroy()
         presenter.onDestroy()
     }
-
 }

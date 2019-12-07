@@ -4,7 +4,4 @@
 
 # Screenshot
 
-![](/screenshots/screenshot.png =100x20)
-
-
-<img src="screenshot.png" alt="drawing" width="200"/>
+![](/screenshots/screenshot.png =50x10)

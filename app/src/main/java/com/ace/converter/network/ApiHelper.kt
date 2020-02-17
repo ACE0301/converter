@@ -13,7 +13,7 @@ interface ApiHelper {
 
     @GET("/api/v7/convert")
     fun getValueCurrencies(
-        @Query("q") currencies: String,
-        @Query("compact") compact: String
+            @Query("q") currencies: String,
+            @Query("compact") compact: String
     ): Single<ModelResponse>
 }

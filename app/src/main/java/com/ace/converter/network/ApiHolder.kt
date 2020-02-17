@@ -13,7 +13,7 @@ const val API_KEY = "0df0077d2f038ffb3510"
 
 object ApiHolder {
 
-    var okHttpClient = OkHttpClient.Builder()
+    private var okHttpClient = OkHttpClient.Builder()
         .addNetworkInterceptor(object : Interceptor {
             override fun intercept(chain: Interceptor.Chain): Response {
                 val original = chain.request()
@@ -29,7 +29,7 @@ object ApiHolder {
             }
         })
         .build()
-    val retrofit = Retrofit.Builder()
+    private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(okHttpClient)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.newThread()))

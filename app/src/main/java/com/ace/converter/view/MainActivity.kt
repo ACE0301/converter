@@ -6,7 +6,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.ace.converter.R
-import com.ace.converter.base.context.ContextDelegateFactory
 import com.ace.converter.extentions.afterTextChanged
 import com.ace.converter.extentions.getIntOrZero
 import com.ace.converter.prefs.AppPreferencesHelper
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val repository = AppPreferencesHelper(ContextDelegateFactory.create(this))
+        val repository = AppPreferencesHelper(this)
         presenter = MainPresenter(this, repository)
         presenter.onCreate()
 

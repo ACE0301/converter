@@ -2,11 +2,10 @@ package com.ace.converter.prefs
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.ace.converter.base.context.ContextDelegate
 
 
 class AppPreferencesHelper(
-    contextDelegate: ContextDelegate
+        context: Context
 ) : PreferencesHelper {
 
     companion object {
@@ -17,7 +16,7 @@ class AppPreferencesHelper(
     }
 
     private var preferences =
-        contextDelegate.getContext()?.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+            context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
 
     private val pref: SharedPreferences? = preferences
 

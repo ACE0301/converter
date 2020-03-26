@@ -1,76 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.MainActivity">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.MainActivity">
+
     <TextView
-            android:id="@+id/tvConvertFrom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/convert_from"
-            android:textColor="@color/black"
-            android:layout_marginTop="@dimen/spacing_small_8"
-            android:layout_marginStart="@dimen/spacing_small_8"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+        android:id="@+id/tvConvertFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small_8"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:text="@string/convert_from"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Spinner
-            android:id="@+id/spinner_from"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_small_8"
-            android:layout_marginEnd="@dimen/spacing_small_8"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/etQuantity"
-            app:layout_constraintBottom_toBottomOf="@+id/etQuantity"
-            app:layout_constraintEnd_toStartOf="@+id/etQuantity"/>
+        android:id="@+id/spinner_from"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small_8"
+        android:layout_marginEnd="@dimen/spacing_small_8"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/etQuantity"
+        app:layout_constraintEnd_toStartOf="@+id/etQuantity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etQuantity" />
+
     <TextView
-            android:id="@+id/tvConvertTo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/convert_to"
-            android:textColor="@color/black"
-            android:layout_marginStart="@dimen/spacing_small_8"
-            android:layout_marginTop="@dimen/spacing_small_8"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etQuantity"/>
+        android:id="@+id/tvConvertTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small_8"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:text="@string/convert_to"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etQuantity" />
+
     <Spinner
-            android:id="@+id/spinner_to"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_small_8"
-            android:layout_marginTop="@dimen/spacing_large_24"
-            android:layout_marginEnd="@dimen/spacing_small_8"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvConvertTo"
-            app:layout_constraintEnd_toStartOf="@+id/tvResult"/>
+        android:id="@+id/spinner_to"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small_8"
+        android:layout_marginTop="@dimen/spacing_large_24"
+        android:layout_marginEnd="@dimen/spacing_small_8"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/tvResult"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvConvertTo" />
+
     <TextView
-            android:id="@+id/tvResult"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_small_8"
-            android:layout_marginEnd="@dimen/spacing_small_8"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/spinner_to"
-            app:layout_constraintBottom_toBottomOf="@+id/spinner_to"
-            app:layout_constraintStart_toEndOf="@+id/spinner_to"
-            tools:text="результат"/>
+        android:id="@+id/tvResult"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small_8"
+        android:layout_marginEnd="@dimen/spacing_small_8"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner_to"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinner_to"
+        app:layout_constraintTop_toTopOf="@+id/spinner_to"
+        tools:text="результат" />
+
     <EditText
-            android:id="@+id/etQuantity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:maxLength="9"
-            android:inputType="number"
-            android:hint="@string/input_value"
-            android:layout_marginTop="@dimen/spacing_small_8"
-            android:layout_marginStart="@dimen/spacing_small_8"
-            android:layout_marginEnd="@dimen/spacing_small_8"
-            app:layout_constraintTop_toBottomOf="@+id/tvConvertFrom"
-            app:layout_constraintStart_toEndOf="@+id/spinner_from"
-            app:layout_constraintEnd_toEndOf="parent" android:textSize="14sp"/>
+        android:id="@+id/etQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small_8"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:layout_marginEnd="@dimen/spacing_small_8"
+        android:hint="@string/input_value"
+        android:inputType="number"
+        android:maxLength="9"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinner_from"
+        app:layout_constraintTop_toBottomOf="@+id/tvConvertFrom" />
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

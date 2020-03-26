@@ -23,6 +23,8 @@ class MainPresenter(
         disposableLoadCurrencies = ApiHolder.service.getCurrencies()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { view.showLoading() }
+                .doFinally { view.hideLoading() }
                 .subscribe({
                     view.loadCurrencies(it.currencies.keys.toList())
                     appPreferencesHelper.savePairs(it.currencies.keys)
@@ -33,7 +35,7 @@ class MainPresenter(
                 })
     }
 
-    fun updateViewInfo(currencies: String) {
+    fun onItemSelected(currencies: String) {
         disposableGetCurrencyData?.dispose()
         disposableGetCurrencyData = ApiHolder.service.getValueCurrencies(currencies, "ultra")
                 .subscribeOn(Schedulers.io())

@@ -7,11 +7,15 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.ace.converter"
-        minSdkVersion 26
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -43,6 +47,9 @@ dependencies {
 
     // debugImplementation because LeakCanary should only run in debug builds.
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$version_leakcanary_android"
+
+    //https://github.com/jgilfelt/chuck
+    implementation "com.readystatesoftware.chuck:library:$chuck_version"
 
     //https://github.com/jgilfelt/chuck удалить после теста или установить только для дебага
     debugImplementation "com.readystatesoftware.chuck:library:$chuck_version"

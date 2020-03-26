@@ -1,7 +1,6 @@
 package com.ace.converter.network
 
 import com.ace.converter.model.Currencies
-import com.ace.converter.model.ModelResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -15,5 +14,5 @@ interface ApiHelper {
     fun getValueCurrencies(
             @Query("q") currencies: String,
             @Query("compact") compact: String
-    ): Single<ModelResponse>
+    ): Single<Map<String, Float>>
 }

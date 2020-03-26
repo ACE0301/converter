@@ -3,12 +3,12 @@ package com.ace.converter.model
 import com.google.gson.annotations.SerializedName
 
 data class Currencies(
-    @SerializedName("results")
-    val currencies: Map<String, Currency>
+        @SerializedName("results")
+        val currencies: Map<String, Currency>
 )
 
 data class Currency(
-    val currencyName: String,
-    val currencySymbol: String,
-    val id: String
+        val currencyName: String,
+        val currencySymbol: String,
+        val id: String
 )

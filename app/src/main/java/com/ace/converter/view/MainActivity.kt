@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), MainView {
     private fun onDataChanged(currencies: String) {
         if (quantity > 0) {
             presenter.onDataChanged(currencies)
-        }
+        } else tvResult.text = ""
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -85,22 +85,20 @@ class MainActivity : AppCompatActivity(), MainView {
         }
     }
 
+    override fun showResult(result: Float?) {
+        if (result == 0.0f) {
+            tvResult.text = getString(R.string.connection)
+        } else {
+            tvResult.text = "${result?.times(quantity)}"
+        }
+    }
+
     override fun showLoading() {
         progressbar.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
         progressbar.visibility = View.GONE
-    }
-
-    override fun showResult(result: Float?) {
-        if (result == 0.0f) {
-            tvResult.text = getString(R.string.connection)
-        } else {
-            if (quantity <= 0) {
-                tvResult.text = getString(R.string.input_positive)
-            } else tvResult.text = "${result?.times(quantity)}"
-        }
     }
 
     override fun onDestroy() {

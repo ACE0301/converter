@@ -19,6 +19,8 @@ buildscript {
         version_junit = '4.13-rc-1'
         version_logging_interceptor = '4.2.2'
         chuck_version = '1.1.0'
+        room_version = '2.2.1'
+        room_rxjava2_version = '2.2.3'
     }
     repositories {
         google()

@@ -4,9 +4,16 @@ import android.content.Context
 import android.content.SharedPreferences
 
 
-class AppPreferencesHelper(
-        context: Context
-) : PreferencesHelper {
+interface Preferences {
+    fun savePairs(setPairs: Set<String>)
+    fun getPairs(): Set<String>?
+    fun saveResult(pairOfCurrency: String, result: Float)
+    fun getResult(pairOfCurrency: String): Float?
+}
+
+class PreferencesImpl(
+        context: Context?
+) : Preferences {
 
     companion object {
         const val APP_PREFERENCES = "currencies"
@@ -16,7 +23,7 @@ class AppPreferencesHelper(
     }
 
     private var preferences =
-            context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+            context?.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
 
     private val pref: SharedPreferences? = preferences
 

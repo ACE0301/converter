@@ -7,8 +7,6 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.ace.converter.R
 import com.ace.converter.extentions.afterTextChanged
-import com.ace.converter.extentions.getIntOrZero
-import com.ace.converter.prefs.AppPreferencesHelper
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainView {
@@ -29,17 +27,13 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val repository = AppPreferencesHelper(this)
-        presenter = MainPresenter(this, repository)
+        presenter = MainPresenter(this)
         presenter.onCreate()
 
         spinner_from.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 currencyOne = parent.getItemAtPosition(pos).toString()
-                if (etQuantity.text.isNotEmpty()) {
-                    presenter.onItemSelected("${currencyOne}_${currencyTwo}")
-                }
-                quantity = etQuantity.text.toString().getIntOrZero()
+                onDataChanged("${currencyOne}_${currencyTwo}")
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
@@ -48,19 +42,20 @@ class MainActivity : AppCompatActivity(), MainView {
         spinner_to.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 currencyTwo = parent.getItemAtPosition(pos).toString()
-                if (etQuantity.text.isNotEmpty()) {
-                    presenter.onItemSelected("${currencyOne}_${currencyTwo}")
-                }
-                quantity = etQuantity.text.toString().getIntOrZero()
+                onDataChanged("${currencyOne}_${currencyTwo}")
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
         etQuantity.afterTextChanged {
-            if (etQuantity.text.isNotEmpty()) {
-                presenter.onItemSelected("${currencyOne}_${currencyTwo}")
-            }
             quantity = it
+            onDataChanged("${currencyOne}_${currencyTwo}")
+        }
+    }
+
+    private fun onDataChanged(currencies: String) {
+        if (quantity > 0) {
+            presenter.onDataChanged(currencies)
         }
     }
 
@@ -91,23 +86,11 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun showLoading() {
-        tvConvertFrom.visibility = View.GONE
-        spinner_from.visibility = View.GONE
-        tvConvertTo.visibility = View.GONE
-        spinner_to.visibility = View.GONE
-        tvResult.visibility = View.GONE
-        etQuantity.visibility = View.GONE
         progressbar.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
         progressbar.visibility = View.GONE
-        tvConvertFrom.visibility = View.VISIBLE
-        spinner_from.visibility = View.VISIBLE
-        tvConvertTo.visibility = View.VISIBLE
-        spinner_to.visibility = View.VISIBLE
-        tvResult.visibility = View.VISIBLE
-        etQuantity.visibility = View.VISIBLE
     }
 
     override fun showResult(result: Float?) {

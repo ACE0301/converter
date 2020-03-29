@@ -1,7 +1,7 @@
-package com.ace.converter.data.source.remote
+package com.ace.converter.data.server
 
 import com.ace.converter.network.ApiHolder
-import com.ace.converter.model.Currencies
+import com.ace.converter.entity.Currencies
 import io.reactivex.Single
 
 interface CurrencyRemoteDataSource {

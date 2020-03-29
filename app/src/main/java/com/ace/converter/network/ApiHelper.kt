@@ -1,6 +1,6 @@
 package com.ace.converter.network
 
-import com.ace.converter.model.Currencies
+import com.ace.converter.entity.Currencies
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

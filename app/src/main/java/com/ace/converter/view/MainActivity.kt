@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ace.converter.R
+import com.ace.converter.entity.Currency
 import com.ace.converter.extentions.afterTextChanged
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -73,7 +75,7 @@ class MainActivity : AppCompatActivity(), MainView {
         selectionTwo = savedInstanceState.getInt(KEY_SELECTION_TWO)
     }
 
-    override fun loadCurrencies(currencies: List<String>) {
+    override fun showCurrencies(currencies: List<String>) {
         ArrayAdapter(
                 this, android.R.layout.simple_spinner_item, currencies
         ).also { adapter ->
@@ -99,6 +101,10 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun hideLoading() {
         progressbar.visibility = View.GONE
+    }
+
+    override fun showException(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroy() {

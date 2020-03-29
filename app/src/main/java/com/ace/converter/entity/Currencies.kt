@@ -1,4 +1,4 @@
-package com.ace.converter.model
+package com.ace.converter.entity
 
 import com.google.gson.annotations.SerializedName
 

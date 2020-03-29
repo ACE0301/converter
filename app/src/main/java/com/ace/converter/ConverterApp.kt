@@ -9,7 +9,7 @@ class ConverterApp : Application() {
 
     companion object {
         lateinit var cx: Context
-        fun getAppContext(): Context? {
+        fun getAppContext(): Context {
             return cx
         }
     }

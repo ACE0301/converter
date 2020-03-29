@@ -1,57 +1,55 @@
 package com.ace.converter.view
 
-import com.ace.converter.data.repository.CurrencyRepository
-import com.ace.converter.data.repository.CurrencyRepositoryImpl
+import com.ace.converter.Utils
+import com.ace.converter.domain.CurrencyInteractor
+import com.ace.converter.domain.CurrencyInteractorImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class MainPresenter(
         private val view: MainView,
-        private val repository: CurrencyRepository = CurrencyRepositoryImpl()
+        private val interactor: CurrencyInteractor = CurrencyInteractorImpl()
 ) {
 
-    private var disposableLoadCurrencies: Disposable? = null
+    private var disposableGetCurrencies: Disposable? = null
     private var disposableGetCurrencyData: Disposable? = null
 
     fun onCreate() {
-        loadCurrencies()
+        getCurrencies()
     }
 
-    private fun loadCurrencies() {
-        disposableLoadCurrencies?.dispose()
-        disposableLoadCurrencies = repository.getCurrencies()
+    private fun getCurrencies() {
+        disposableGetCurrencies = interactor.getCurrencies()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { view.showLoading() }
                 .doFinally { view.hideLoading() }
                 .subscribe({
-                    view.loadCurrencies(it.currencies.keys.toList())
-                    repository.savePairs(it.currencies.keys)
+                    view.showCurrencies(it)
                 }, {
-                    it.message
-                    repository.getPairs()?.toList()
-                            ?.let { list -> view.loadCurrencies(list) }
+                    view.showException(it.message)
                 })
     }
 
     fun onDataChanged(currencies: String) {
         disposableGetCurrencyData?.dispose()
-        disposableGetCurrencyData = repository.getValueCurrencies(currencies)
+        disposableGetCurrencyData = interactor.getValueCurrencies(currencies, Utils.isNetworkConnected())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { view.showLoading() }
                 .doFinally { view.hideLoading() }
                 .subscribe({
-                    it[currencies]?.let { value -> repository.saveResult(currencies, value) }
-                    view.showResult(it[currencies])
+                    //it?.let { value -> interactor.saveResult(currencies, value) }
+                    view.showResult(it)
                 }, {
-                    view.showResult(repository.getResult(currencies))
+                    view.showException(it.message)
+                    //view.showResult(repository.getResult(currencies))
                 })
     }
 
     fun onDestroy() {
-        disposableLoadCurrencies?.dispose()
+        disposableGetCurrencies?.dispose()
         disposableGetCurrencyData?.dispose()
     }
 }
